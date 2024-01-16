@@ -12,8 +12,9 @@ export LC_ALL=C
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin"
 
 trm_domain="${1}"
-user="${2}"
-password="${3}"
+port="${2}"
+user="${3}"
+password="${4}"
 success="Thank you!"
 trm_useragent="$(uci_get travelmate global trm_useragent "Mozilla/5.0 (Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0")"
 trm_maxwait="$(uci_get travelmate global trm_maxwait "30")"
@@ -21,5 +22,5 @@ trm_fetch="$(command -v curl)"
 
 # login with credentials
 #
-raw_html="$("${trm_fetch}" --user-agent "${trm_useragent}" --referer "http://${trm_domain}" --connect-timeout $((trm_maxwait / 6)) --silent --show-error --header "Content-Type:application/x-www-form-urlencoded" --data "auth_user=${user}&auth_pass=${password}&accept=Annehmen" "http://${trm_domain}")"
+raw_html="$("${trm_fetch}" --user-agent "${trm_useragent}" --referer "http://${trm_domain}" --connect-timeout $((trm_maxwait / 6)) --silent --show-error --header "Content-Type:application/x-www-form-urlencoded" --data "auth_user=${user}&auth_pass=${password}&accept=Annehmen" "http://${trm_domain}:${port}")"
 [ -z "${raw_html##*${success}*}" ] && exit 0 || exit 255
