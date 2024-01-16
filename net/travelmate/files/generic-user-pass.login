@@ -21,5 +21,5 @@ trm_fetch="$(command -v curl)"
 
 # login with credentials
 #
-raw_html="$("${trm_fetch}" --user-agent "${trm_useragent}" --referer "http://www.example.com" --connect-timeout $((trm_maxwait / 6)) --silent --show-error --header "Content-Type:application/x-www-form-urlencoded" --data "username=${user}&password=${password}&accept=Annehmen" "http://${trm_domain}")"
+raw_html="$("${trm_fetch}" --user-agent "${trm_useragent}" --referer "http://www.example.com" --connect-timeout $((trm_maxwait / 6)) --silent --show-error --header "Content-Type:application/x-www-form-urlencoded" --data "username=${user}&password=${password}" "http://${trm_domain}")"
 [ -z "${raw_html##*${success}*}" ] && exit 0 || exit 255
