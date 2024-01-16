@@ -11,10 +11,10 @@
 export LC_ALL=C
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin"
 
-user="${1}"
-password="${2}"
+trm_domain="${1}"
+user="${2}"
+password="${3}"
 success="Thank you!"
-trm_domain="${3}"
 trm_useragent="$(uci_get travelmate global trm_useragent "Mozilla/5.0 (Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0")"
 trm_maxwait="$(uci_get travelmate global trm_maxwait "30")"
 trm_fetch="$(command -v curl)"
